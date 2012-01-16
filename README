@@ -1,0 +1,7 @@
+HashMasher - Find can log links from the #codemash (or whatever you want) hashtag.
+=============
+
+Requirements
+------------
+
+#MongoDB running local.
