@@ -42,6 +42,8 @@ namespace HashMasher
         private void StatusCreatedCallback(TwitterStatus status)
         {
             _logger.Debug("Logging Message: " + status.Text);
+            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
+            dataGateway.ProcessStatus(status);
         }
 
         private void StreamErrorCallback(StopReasons stopreason)

@@ -12,9 +12,9 @@ namespace HashMasher
         {
             Windsor = new WindsorContainer();
             Windsor
-                   .Register(
-                        Component.For(typeof(IMongoRepository<>)).ImplementedBy(typeof(MongoRepository<>))
-                   );
+                   .Register(Component.For(typeof(IMongoRepository<>)).ImplementedBy(typeof(MongoRepository<>)))
+                   .Register(Component.For(typeof(IDataGateway)).ImplementedBy(typeof(DataGateway)))
+                   ;
         }
     }
 }

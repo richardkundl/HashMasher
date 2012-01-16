@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Container.cs" />
+    <Compile Include="DataGateway.cs" />
+    <Compile Include="Model\LoggedStatus.cs" />
+    <Compile Include="Model\LoggedLink.cs" />
     <Compile Include="TwitterStreamReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
