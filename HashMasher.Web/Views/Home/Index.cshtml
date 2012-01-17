@@ -16,18 +16,15 @@
 
 
 <h3>#codemash tweets with links:</h3>
-
-<ol class="round">
-    
     @foreach (var item in Model)
     {
-        <li>
+        <div style="float:left;width:250px;">
             <h5><span class="count">@item.NumberOfTweets + 1</span> <a href="@item.Link" target="_blank">@item.Link</a></h5>
             @{
                 var firstLink = item.StatusContainingLink.FirstOrDefault();
                 var display = (firstLink !=null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
             }
             <p>@Html.Raw(display)</p>
-        </li>
+        </div>
     }
-</ol>
+
