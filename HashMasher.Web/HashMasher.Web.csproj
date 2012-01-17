@@ -108,8 +108,9 @@
     <Reference Include="TwitterAuth">
       <HintPath>..\HashMasher\packages\TwitterAuth\TwitterAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Twitterizer2">
-      <HintPath>..\HashMasher\packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
+    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HashMasher\packages\TwitterAuth\Twitterizer2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
