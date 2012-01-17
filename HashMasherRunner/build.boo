@@ -1,4 +1,4 @@
-﻿solution_file = """C:\Program Files (x86)\Jenkins\jobs\HashMash-Service\workspace\HashMashRunner\HashMashRunner.csproj"""
+﻿solution_file = """C:\Program Files (x86)\Jenkins\jobs\HashMasher\workspace\HashMasherRunner\HashMashRunner.csproj"""
 configuration = 'Release'
 
 
