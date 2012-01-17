@@ -1,1 +1,1 @@
-﻿"C:\Program Files (x86)\Jenkins\jobs\HashMasher\workspace\Assets\Phantom\Phantom\phantom.exe" -f "C:\Program Files (x86)\Jenkins\jobs\HashMasher\workspace\HashMasherRunner\build.boo"
+"C:\Program Files (x86)\Jenkins\jobs\HashMasher\workspace\Assets\Phantom\Phantom\phantom.exe" -f "C:\Program Files (x86)\Jenkins\jobs\HashMasher\workspace\HashMasherRunner\build.boo"
