@@ -22,8 +22,8 @@
     @foreach (var item in Model)
     {
         <li>
-            <h5>item.Link</h5>
-            Message Here
+            <h5>@item.Link</h5>
+            <p>@item.StatusContainingLink.First().Text</p>
         </li>
     }
 </ol>

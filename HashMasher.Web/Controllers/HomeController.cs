@@ -7,9 +7,9 @@ namespace HashMasher.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMongoRepository<LoggedStatus> _repository;
+        private readonly IMongoRepository<LoggedLink> _repository;
 
-        public HomeController(IMongoRepository<LoggedStatus> repository)
+        public HomeController(IMongoRepository<LoggedLink> repository)
         {
             _repository = repository;
         }
