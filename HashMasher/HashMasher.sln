@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMasher", "HashMasher.csproj", "{E868C9FD-A41F-4230-B038-564755C8BD87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMasher.Tests", "..\HashMasher.Tests\HashMasher.Tests.csproj", "{CBD43786-F0BB-4206-AA37-DB5AF55851F9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMasherRunner", "..\HashMasherRunner\HashMasherRunner.csproj", "{DCB3BBE6-4D98-456F-A8A7-075BCE1D0ADA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5900BA42-624B-40AF-9C20-5F0482155F17}"
@@ -13,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMasher.Web", "..\HashMasher.Web\HashMasher.Web.csproj", "{D0569205-D943-4E07-BB54-B041FB907C90}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMasher.Web.Tests", "..\HashMasher.Web.Tests\HashMasher.Web.Tests.csproj", "{EC2915D4-CE2A-4401-B913-724E5EAEB480}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,16 +32,6 @@ Global
 		{E868C9FD-A41F-4230-B038-564755C8BD87}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E868C9FD-A41F-4230-B038-564755C8BD87}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E868C9FD-A41F-4230-B038-564755C8BD87}.Release|x86.ActiveCfg = Release|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CBD43786-F0BB-4206-AA37-DB5AF55851F9}.Release|x86.ActiveCfg = Release|Any CPU
 		{DCB3BBE6-4D98-456F-A8A7-075BCE1D0ADA}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{DCB3BBE6-4D98-456F-A8A7-075BCE1D0ADA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{DCB3BBE6-4D98-456F-A8A7-075BCE1D0ADA}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -66,16 +52,6 @@ Global
 		{D0569205-D943-4E07-BB54-B041FB907C90}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D0569205-D943-4E07-BB54-B041FB907C90}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D0569205-D943-4E07-BB54-B041FB907C90}.Release|x86.ActiveCfg = Release|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{EC2915D4-CE2A-4401-B913-724E5EAEB480}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
