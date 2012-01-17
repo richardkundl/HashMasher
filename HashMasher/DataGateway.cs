@@ -48,6 +48,7 @@ namespace HashMasher
                     Source = status.Source,
                     Text = status.Text,
                     User = status.User.ScreenName,
+                    UserImage = status.User.ProfileImageLocation,
                     HtmlText = status.LinkifiedText(),
                     TweetId = status.StringId
                 };

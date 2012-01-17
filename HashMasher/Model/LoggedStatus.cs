@@ -7,6 +7,7 @@ namespace HashMasher.Model
     /// </summary>
     public class LoggedStatus
     {
+        public string UserImage { get; set; };
         public DateTime CreatedDate { get; set; }
         public string Source { get; set; }
         public string Text { get; set; }
