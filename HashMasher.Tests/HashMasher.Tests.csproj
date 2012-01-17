@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Windsor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="FluentAssertions">
       <HintPath>..\HashMasher\packages\FluentAssertions.1.7.0\Lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
@@ -58,13 +59,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HashTagRepository_Specs.cs" />
     <Compile Include="TwitterStreamReader_Specs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\HashMasherRunner\app.config">
+      <Link>app.config</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HashMasherRunner\HashMasherRunner.csproj">
+      <Project>{DCB3BBE6-4D98-456F-A8A7-075BCE1D0ADA}</Project>
+      <Name>HashMasherRunner</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HashMasher\HashMasher.csproj">
       <Project>{E868C9FD-A41F-4230-B038-564755C8BD87}</Project>
       <Name>HashMasher</Name>

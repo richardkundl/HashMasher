@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HashMasher
+namespace HashMasher.Model
 {
     /// <summary>
     /// This is the almost raw response from twitter. mapped w/o some of the many items we don't need.

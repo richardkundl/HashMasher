@@ -1,4 +1,7 @@
-﻿using Twitterizer;
+﻿using System.Linq;
+using HashMasher.Model;
+using ProMongoRepository;
+using Twitterizer;
 using Twitterizer.Streaming;
 using log4net;
 
@@ -7,11 +10,15 @@ namespace HashMasher
     public class TwitterStreamReader
     {
         protected readonly ILog _logger = LogManager.GetLogger("TwitterStreamReader");
+     
 
         public void Execuite()
         {
             var streamOptions = new StreamOptions();
-            streamOptions.Track.Add("codemash");
+            var config = Container.Windsor.Resolve<IApplicationConfiguration>();
+
+            
+            streamOptions.Track.AddRange(config.HashTags.Split(',').ToList());
 
             var stream = new TwitterStream(Constants.PrflockOAuthTokens, "hashMasher", streamOptions);
 

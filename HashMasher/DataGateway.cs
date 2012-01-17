@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HashMasher.Model;
 using ProMongoRepository;
 using Twitterizer;
 using Twitterizer.Entities;
@@ -19,10 +20,12 @@ namespace HashMasher
     {
 
         private readonly IMongoRepository<LoggedLink> _tweetRepository;
+        private readonly IApplicationConfiguration _configuration;
 
-        public DataGateway(IMongoRepository<LoggedLink> tweetRepository)
+        public DataGateway(IMongoRepository<LoggedLink> tweetRepository, IApplicationConfiguration configuration)
         {
             _tweetRepository = tweetRepository;
+            _configuration = configuration;
         }
 
 
@@ -32,6 +35,8 @@ namespace HashMasher
             // Exit the method if there are no entities
             if (status.Entities == null)
                 return;
+
+            var foundHashTags = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.Contains(x)).ToList();
 
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
@@ -52,7 +57,9 @@ namespace HashMasher
                     {
                         var newLink = new LoggedLink { Link = urlEntity.Url };
                         newLink.StatusContainingLink.Add(loggedStatus);
+                        newLink.HashTags.AddRange(foundHashTags);
                         _tweetRepository.Save(newLink);
+
                     } else
                     {
                         foundLink.StatusContainingLink.Add(loggedStatus);

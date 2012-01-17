@@ -50,6 +50,7 @@
       <HintPath>packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,8 +68,11 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="DataGateway.cs" />
+    <Compile Include="Model\HashTag.cs" />
+    <Compile Include="Model\IApplicationConfiguration.cs" />
     <Compile Include="Model\LoggedStatus.cs" />
     <Compile Include="Model\LoggedLink.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="TwitterStreamReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
