@@ -25,7 +25,7 @@
                 var display = (firstLink !=null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
             }
             <p>@Html.Raw(display)</p>
-            <div>@(item.Created.HasValue ? item.Created.Value.ToLongDateString() : "unknown")</div>
+            <div>@(item.Created.HasValue ? String.Format("{0:g}", item.Created.Value) : "unknown")</div>
         </div>
     }
 
