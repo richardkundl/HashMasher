@@ -36,7 +36,7 @@ namespace HashMasher
             if (status.Entities == null)
                 return;
 
-            var foundHashTags = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.Contains(x)).ToList();
+            var foundHashTags = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant())).ToList();
 
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
