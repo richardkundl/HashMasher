@@ -52,10 +52,6 @@
     <Reference Include="Microsoft.Web.Optimization">
       <HintPath>..\HashMasher\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HashMasher\packages\TwitterAuth\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="ProMongoRepository">
       <HintPath>..\HashMasher\packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
     </Reference>
@@ -105,13 +101,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TwitterAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HashMasher\packages\TwitterAuth\TwitterAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="Twitterizer2, Version=2.4.0.41419, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HashMasher\packages\TwitterAuth\Twitterizer2.dll</HintPath>
+      <HintPath>..\HashMasher\packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +113,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TwitterResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
