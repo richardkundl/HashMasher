@@ -18,7 +18,7 @@
 <h3>#codemash tweets with links:</h3>
     @foreach (var item in Model)
     {
-        <div style="float:left;width:250px;">
+        <div style="float:left;width:225px;">
             <h5><a href="@item.Link" target="_blank">@item.Link</a></h5>
             @{
                 var firstLink = item.StatusContainingLink.FirstOrDefault();
