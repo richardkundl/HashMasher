@@ -20,15 +20,6 @@ namespace HashMasher.Web.Controllers
         private IMongoRepository<User> _userRepository;
         private static readonly ILog Logger = LogManager.GetLogger("UsersController");
     
-        public ActionResult LogOff()
-        {
-            FormsAuthentication.SignOut();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-  
-
         public override ActionResult Success()
         {
             Logger.Debug("Success Called");
