@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 using HashMasher.Model;
-using HashMasher.Web.Models;
 using ProMongoRepository;
 using TwitterAuth;
 using Twitterizer;
@@ -14,7 +9,6 @@ using log4net;
 namespace HashMasher.Web.Controllers
 {
 
-    [Authorize]
     public class AccountController : TwitterController
     {
         private IMongoRepository<User> _userRepository;
