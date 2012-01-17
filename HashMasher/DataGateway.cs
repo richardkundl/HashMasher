@@ -72,6 +72,11 @@ namespace HashMasher
                     else
                     {
                         foundLink.Modified = DateTime.Now;
+                        if(foundLink.Created==null)
+                        {
+                            foundLink.Created = DateTime.Now;
+                        }
+
                         foundLink.StatusContainingLink.Add(loggedStatus);
                         _tweetRepository.Save(foundLink);
                     }
