@@ -52,8 +52,9 @@
     <Reference Include="Microsoft.Web.Optimization">
       <HintPath>..\HashMasher\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\HashMasher\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HashMasher\packages\Twitterizer\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ProMongoRepository">
       <HintPath>..\HashMasher\packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
@@ -106,7 +107,11 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HashMasher\packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
+      <HintPath>..\HashMasher\packages\Twitterizer\Twitterizer2.dll</HintPath>
+    </Reference>
+    <Reference Include="Twitterizer2.Streaming, Version=2.4.0.26649, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HashMasher\packages\Twitterizer\Twitterizer2.Streaming.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Twitterizer\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Norm">
       <HintPath>packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
@@ -59,13 +59,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Twitterizer2, Version=2.4.0.41419, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
+      <HintPath>packages\Twitterizer\Twitterizer2.dll</HintPath>
     </Reference>
-    <Reference Include="Twitterizer2.Streaming, Version=2.4.0.41495, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+    <Reference Include="Twitterizer2.Streaming, Version=2.4.0.26649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\twitterizer-streaming.2.4.0.26649\lib\net40\Twitterizer2.Streaming.dll</HintPath>
+      <HintPath>packages\Twitterizer\Twitterizer2.Streaming.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
