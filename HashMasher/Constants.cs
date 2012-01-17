@@ -7,7 +7,7 @@
         public const string HashMasherAccessToken = @"12048422-kUDK5o3ouWkrfUT3fPaSFGSuDDe0wTSFtPCsIkRcG";
         public const string HashMasherAccessTokenSecret = @"9BRUjfHmmH3VyCrlXgw7xlYAd3MY1LfExPJsMaCiO4";
 
-        public static Twitterizer.OAuthTokens PrflockOAuthTokens
+        public static Twitterizer.OAuthTokens OAuthTokens
         {
             get
             {

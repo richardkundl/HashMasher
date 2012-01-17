@@ -11,9 +11,7 @@ namespace HashMasher.Tests
         public void should_connect_to_twitter()
         {
             var twitterStreamReader = new TwitterStreamReader();
-            twitterStreamReader.Execuite();
+            twitterStreamReader.StartService();
         }
-
-        
     }
 }

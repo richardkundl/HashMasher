@@ -10,9 +10,9 @@ namespace HashMasher
     public class TwitterStreamReader
     {
         protected readonly ILog _logger = LogManager.GetLogger("TwitterStreamReader");
-     
 
-        public void Execuite()
+
+        public void StartService()
         {
             var streamOptions = new UserStreamOptions();
             var config = Container.Windsor.Resolve<IApplicationConfiguration>();
@@ -20,7 +20,7 @@ namespace HashMasher
             
             streamOptions.Track.AddRange(config.HashTags.Split(',').ToList());
 
-            var stream = new TwitterStream(Constants.PrflockOAuthTokens, "hashMasher", streamOptions);
+            var stream = new TwitterStream(Constants.OAuthTokens, "hashMasher", streamOptions);
 
             stream.StartPublicStream(StreamErrorCallback, 
                 StatusCreatedCallback, 
@@ -29,6 +29,13 @@ namespace HashMasher
                 RawJsonCallback);
 
             //stream.EndStream();
+            _logger.Debug("service up");
+            TwitterDirectMessage.Send(Constants.OAuthTokens, "detroitpro", "hashmash is UP");
+        }
+
+        public void StopService()
+        {
+
         }
 
         private void RawJsonCallback(string json)
@@ -56,6 +63,7 @@ namespace HashMasher
         private void StreamErrorCallback(StopReasons stopreason)
         {
             _logger.Debug("service down");
+            TwitterDirectMessage.Send(Constants.OAuthTokens, "detroitpro", "hashmash is down");
         }
     }
 }
