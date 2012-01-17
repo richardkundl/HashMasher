@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<HashMasher.Model.LoggedLink>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -18,9 +19,11 @@
 
 <ol class="round">
     
-    <li>
-        <h5>Link1</h5>
-        Message Here
-    </li>
-    
+    @foreach (var item in Model)
+    {
+        <li>
+            <h5>item.Link</h5>
+            Message Here
+        </li>
+    }
 </ol>
