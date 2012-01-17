@@ -41,8 +41,9 @@
     <Reference Include="log4net">
       <HintPath>packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\TwitterAuth\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Norm">
       <HintPath>packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
@@ -58,11 +59,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Twitterizer2">
-      <HintPath>packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
+    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\TwitterAuth\Twitterizer2.dll</HintPath>
     </Reference>
-    <Reference Include="Twitterizer2.Streaming">
-      <HintPath>packages\twitterizer-streaming.2.4.0.26649\lib\net40\Twitterizer2.Streaming.dll</HintPath>
+    <Reference Include="Twitterizer2.Streaming, Version=2.4.0.26649, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\TwitterAuth\Twitterizer2.Streaming.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

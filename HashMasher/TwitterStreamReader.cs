@@ -14,7 +14,7 @@ namespace HashMasher
 
         public void Execuite()
         {
-            var streamOptions = new StreamOptions();
+            var streamOptions = new UserStreamOptions();
             var config = Container.Windsor.Resolve<IApplicationConfiguration>();
 
             

@@ -105,10 +105,11 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TwitterAuth">
+    <Reference Include="TwitterAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HashMasher\packages\TwitterAuth\TwitterAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+    <Reference Include="Twitterizer2, Version=2.4.0.41419, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HashMasher\packages\TwitterAuth\Twitterizer2.dll</HintPath>
     </Reference>
