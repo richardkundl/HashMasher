@@ -33,24 +33,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Twitterizer\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Twitterizer\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Norm">
-      <HintPath>packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
+      <HintPath>..\packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
     </Reference>
     <Reference Include="ProMongoRepository">
-      <HintPath>packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
+      <HintPath>..\packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -62,11 +62,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Twitterizer\Twitterizer2.dll</HintPath>
+      <HintPath>..\packages\Twitterizer\Twitterizer2.dll</HintPath>
     </Reference>
     <Reference Include="Twitterizer2.Streaming, Version=2.4.0.26649, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Twitterizer\Twitterizer2.Streaming.dll</HintPath>
+      <HintPath>..\packages\Twitterizer\Twitterizer2.Streaming.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
