@@ -22,8 +22,12 @@
     @foreach (var item in Model)
     {
         <li>
-            <h5><a href="@item.Link" target="_blank">@item.Link</a></h5>
-            <p>@item.StatusContainingLink.First().Text</p>
+            <h5><span class="count">@item.NumberOfTweets</span> <a href="@item.Link" target="_blank">@item.Link</a></h5>
+            @{
+                var firstLink = item.StatusContainingLink.FirstOrDefault();
+                var display = (firstLink !=null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
+            }
+            <p>@display</p>
         </li>
     }
 </ol>

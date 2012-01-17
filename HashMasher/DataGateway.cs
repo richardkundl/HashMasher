@@ -63,7 +63,8 @@ namespace HashMasher
                         var newLink = new LoggedLink
                                           {
                                               Link = urlEntity.Url, 
-                                              Created = DateTime.Now
+                                              Created = DateTime.Now,
+                                              NumberOfTweets = 1
                                           };
                         newLink.StatusContainingLink.Add(loggedStatus);
                         newLink.HashTags.AddRange(foundHashTags);
@@ -77,7 +78,7 @@ namespace HashMasher
                         {
                             foundLink.Created = DateTime.Now;
                         }
-
+                        foundLink.NumberOfTweets = foundLink.StatusContainingLink.Count() + 1;
                         foundLink.StatusContainingLink.Add(loggedStatus);
                         _tweetRepository.Save(foundLink);
                     }
