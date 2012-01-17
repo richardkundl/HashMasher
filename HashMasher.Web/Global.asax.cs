@@ -32,7 +32,7 @@ namespace HashMasher.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            Bootstrapper.Run();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
