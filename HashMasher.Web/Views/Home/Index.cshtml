@@ -22,7 +22,7 @@
     @foreach (var item in Model)
     {
         <li>
-            <h5>@item.Link</h5>
+            <h5><a href="@item.Link" target="_blank">@item.Link</a></h5>
             <p>@item.StatusContainingLink.First().Text</p>
         </li>
     }

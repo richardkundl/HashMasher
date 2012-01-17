@@ -46,7 +46,9 @@ namespace HashMasher
                     CreatedDate = status.CreatedDate,
                     Source = status.Source,
                     Text = status.Text,
-                    User = status.User.ScreenName
+                    User = status.User.ScreenName,
+                    HtmlText = status.LinkifiedText(),
+                    TweetId = status.StringId
                 };
 
                 var urlEntity = entity as TwitterUrlEntity;
