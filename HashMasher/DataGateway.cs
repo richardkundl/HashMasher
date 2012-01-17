@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HashMasher.Model;
 using ProMongoRepository;
 using Twitterizer;
@@ -31,7 +32,7 @@ namespace HashMasher
 
         public void ProcessStatus(TwitterStatus status)
         {
-          
+
             // Exit the method if there are no entities
             if (status.Entities == null)
                 return;
@@ -55,19 +56,26 @@ namespace HashMasher
                 if (urlEntity != null)
                 {
                     var foundLink = _tweetRepository.Linq().FirstOrDefault(x => x.Link == urlEntity.Url);
-                    if(foundLink==null)
+                    if (foundLink == null)
                     {
-                        var newLink = new LoggedLink { Link = urlEntity.Url };
+
+                        var newLink = new LoggedLink
+                                          {
+                                              Link = urlEntity.Url, 
+                                              Created = DateTime.Now
+                                          };
                         newLink.StatusContainingLink.Add(loggedStatus);
                         newLink.HashTags.AddRange(foundHashTags);
                         _tweetRepository.Save(newLink);
 
-                    } else
+                    }
+                    else
                     {
+                        foundLink.Modified = DateTime.Now;
                         foundLink.StatusContainingLink.Add(loggedStatus);
                         _tweetRepository.Save(foundLink);
                     }
-                    
+
                 }
             }
         }

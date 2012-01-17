@@ -16,7 +16,11 @@ namespace HashMasher.Web.Controllers
 
         public ActionResult Index()
         {
-            return View(_repository.Linq().ToList());
+            var vm = _repository
+                .Linq()
+                .OrderByDescending(x=>x.Created)
+                .ToList();
+            return View(vm);
         }
     }
 }

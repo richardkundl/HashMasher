@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Norm;
 
@@ -15,5 +16,7 @@ namespace HashMasher.Model
         public string Link { get; set; }
         public IList<LoggedStatus> StatusContainingLink { get; set; }
         public List<string> HashTags { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
     }
 }
