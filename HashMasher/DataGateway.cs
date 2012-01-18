@@ -104,7 +104,7 @@ namespace HashMasher
 
         public void ProcessBatch()
         {
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed!=null && x.Processed !=true).Take(30).ToList();
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed !=true).Take(30).ToList();
             ProcessRawUrlUpdates(unprocessed);
         }
 
