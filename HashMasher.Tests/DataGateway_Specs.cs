@@ -27,10 +27,6 @@ namespace HashMasher.Tests
          }
 
 
-         [Test]
-         public void ProcessBatch()
-         {
-            _dataGateway.ProcessBatch();
-         }
+       
     }
 }

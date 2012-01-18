@@ -2,11 +2,13 @@
 using System.Web.Mvc;
 using HashMasher.Model;
 using ProMongoRepository;
+using log4net;
 
 namespace HashMasher.Web.Controllers
 {
     public class HomeController : Controller
     {
+        protected readonly ILog _logger = LogManager.GetLogger("HomeController");
         private readonly IMongoRepository<ProcessedLink> _repository;
 
         public HomeController(IMongoRepository<ProcessedLink> repository)
@@ -16,9 +18,7 @@ namespace HashMasher.Web.Controllers
 
         public ActionResult Index()
         {
-            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
-            dataGateway.ProcessBatch();
-
+            
 
             var vm = _repository
                 .Linq()
