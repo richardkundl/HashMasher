@@ -25,6 +25,8 @@ namespace HashMasher.Web.Controllers
                 .OrderByDescending(x => x.NumberOfTweets)
                 .OrderByDescending(x => x.Created)
                 .ToList();
+
+            _logger.Info("items:" + vm.Count());
             return View(vm);
         }
     }
