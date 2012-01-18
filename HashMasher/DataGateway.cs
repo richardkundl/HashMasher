@@ -48,6 +48,8 @@ namespace HashMasher
             var hashTag = _configuration.HashTags.Split(',').AsEnumerable().
                 FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant()));
 
+            _logger.InfoFormat("HASH: {0}", hashTag);
+
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
             {
