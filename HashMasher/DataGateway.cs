@@ -38,7 +38,7 @@ namespace HashMasher
 
         public void ProcessStatus(TwitterStatus status)
         {
-            ProcessBatch();
+           
             
 
             // Exit the method if there are no entities
@@ -99,11 +99,12 @@ namespace HashMasher
 
                 }
             }
+            ProcessBatch();
         }
 
         public void ProcessBatch()
         {
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed!=null && x.Processed !=true).Take(5).ToList();
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed!=null && x.Processed !=true).ToList();
             ProcessRawUrlUpdates(unprocessed);
         }
 

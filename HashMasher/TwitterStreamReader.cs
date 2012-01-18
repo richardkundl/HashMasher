@@ -30,7 +30,7 @@ namespace HashMasher
 
             //stream.EndStream();
             _logger.Debug("service up");
-            TwitterDirectMessage.Send(Constants.OAuthTokens, "detroitpro", "hashmash is UP");
+            TwitterStatus.Update(Constants.OAuthTokens, "@detroitpro hashmash is UP");
         }
 
         public void StopService()
