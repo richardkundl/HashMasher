@@ -20,6 +20,9 @@
     {
         <div>
             <h5><a href="@item.ExpandedLink" target="_blank">@item.ExpandedLink</a></h5>
+            <div>
+                @Microsoft.Web.Helpers.Video.Flash(item.ExpandedLink);
+            </div>
             @{
         var firstLink = item.StatusContainingLink.FirstOrDefault();
         var display = (firstLink != null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
