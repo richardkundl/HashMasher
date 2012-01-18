@@ -1,5 +1,4 @@
-﻿using System;
-using HashMasher;
+﻿using HashMasher;
 using Topshelf;
 
 namespace HashMasherRunner
@@ -9,11 +8,6 @@ namespace HashMasherRunner
         static void Main(string[] args)
         {
             Bootstrapper.Run();
-
-            //sooooooodirty.
-            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
-            dataGateway.ProcessBatch();
-
 
             HostFactory.Run(x =>
             {

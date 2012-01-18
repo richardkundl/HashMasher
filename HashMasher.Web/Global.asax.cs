@@ -26,6 +26,12 @@ namespace HashMasher.Web
         {
             AreaRegistration.RegisterAllAreas();
             Bootstrapper.Run();
+
+            //sooooooodirty.
+            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
+            dataGateway.ProcessBatch();
+
+
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
