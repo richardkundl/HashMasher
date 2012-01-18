@@ -13,6 +13,7 @@ namespace HashMasher
     {
         void ProcessStatus(TwitterStatus status);
         string GetExpandedLink(string url);
+        void ProcessBatch();
     }
 
     /// <summary>
@@ -37,9 +38,8 @@ namespace HashMasher
 
         public void ProcessStatus(TwitterStatus status)
         {
-
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed == false).Take(10).ToList();
-            ProcessRawUrlUpdates(unprocessed);
+            ProcessBatch();
+            
 
             // Exit the method if there are no entities
             if (status.Entities == null)
@@ -99,6 +99,12 @@ namespace HashMasher
 
                 }
             }
+        }
+
+        public void ProcessBatch()
+        {
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed == false).Take(10).ToList();
+            ProcessRawUrlUpdates(unprocessed);
         }
 
 

@@ -10,6 +10,11 @@ namespace HashMasherRunner
         {
             Bootstrapper.Run();
 
+            //sooooooodirty.
+            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
+            dataGateway.ProcessBatch();
+
+
             HostFactory.Run(x =>
             {
                 x.Service<TwitterStreamReader>(s =>
