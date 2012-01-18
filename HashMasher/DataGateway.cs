@@ -103,7 +103,7 @@ namespace HashMasher
 
         public void ProcessBatch()
         {
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed == false).Take(10).ToList();
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed!=null && x.Processed !=true).Take(5).ToList();
             ProcessRawUrlUpdates(unprocessed);
         }
 
@@ -124,12 +124,14 @@ namespace HashMasher
                 if(found==null)
                 {
                     var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
+                    processedLink.Processed = true;
                     _processedLinkRepository.Save(processedLink);
                 } else
                 {
                     found.Modified = DateTime.Now;
                     found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
                     found.NumberOfTweets = found.StatusContainingLink.Count();
+                    found.Processed = true;
                     _processedLinkRepository.Save(found);
                 }
             }

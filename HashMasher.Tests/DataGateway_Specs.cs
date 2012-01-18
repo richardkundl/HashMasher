@@ -1,6 +1,9 @@
 ﻿using System;
 using FluentAssertions;
+using HashMasher.Model;
+using HashMasherRunner;
 using NUnit.Framework;
+using ProMongoRepository;
 
 namespace HashMasher.Tests
 {
@@ -12,8 +15,8 @@ namespace HashMasher.Tests
          [SetUp]
          public void Setup()
          {
-             //DataGateway(IMongoRepository<LoggedLink> tweetRepository, IApplicationConfiguration configuration)
-             _dataGateway = new DataGateway(null,null, null);
+             Bootstrapper.Run();
+             _dataGateway = Container.Windsor.Resolve<IDataGateway>();
          }
 
          [Test]
@@ -21,6 +24,13 @@ namespace HashMasher.Tests
          {
              var returnedUrl = _dataGateway.GetExpandedLink("https://t.co/VR3Sbz9B");
              returnedUrl.Should().Be("https://www.destroyallsoftware.com/talks/wat");
+         }
+
+
+         [Test]
+         public void ProcessBatch()
+         {
+            _dataGateway.ProcessBatch();
          }
     }
 }

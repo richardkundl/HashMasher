@@ -20,7 +20,7 @@ namespace HashMasher.Model
         public DateTime? Created { get; set; }
         public DateTime Modified { get; set; }
         public int NumberOfTweets { get; set; }
-        public bool Processed { get; set; }
+        public bool? Processed { get; set; }
         public string HashTag { get; set; }
     }
 }
