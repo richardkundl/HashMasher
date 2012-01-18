@@ -14,7 +14,6 @@ namespace HashMasher
     {
         void ProcessStatus(TwitterStatus status);
         string GetExpandedLink(string url);
-        void ProcessBatch();
     }
 
     /// <summary>
@@ -46,14 +45,11 @@ namespace HashMasher
             if (status.Entities == null)
                 return;
 
-            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant())).FirstOrDefault();
+            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant()));
 
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
             {
-
-                //var loggedStatus = new LoggedStatus();
-
                 var loggedStatus = new LoggedStatus
                 {
                     CreatedDate = status.CreatedDate,
@@ -69,80 +65,31 @@ namespace HashMasher
                 if (urlEntity != null)
                 {
                     var expandedLink = GetExpandedLink(urlEntity.Url);
-                    var foundLink = _tweetRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expandedLink);
+                    var foundLink = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expandedLink);
                     if (foundLink == null)
                     {
 
-                        var newLink = new LoggedLink
+                        var newLink = new ProcessedLink
                                           {
                                               Link = urlEntity.Url, 
                                               ExpandedLink = expandedLink,
                                               Created = DateTime.Now,
                                               NumberOfTweets = 1,
-                                              Processed = false
                                           };
                         newLink.StatusContainingLink.Add(loggedStatus);
                         newLink.HashTag = hashTag;
-                        _tweetRepository.Save(newLink);
+                        _processedLinkRepository.Save(newLink);
 
                     }
                     else
                     {
                         foundLink.Modified = DateTime.Now;
-                        if(foundLink.Created==null)
-                        {
-                            foundLink.Created = DateTime.Now;
-                        }
                         foundLink.NumberOfTweets = foundLink.StatusContainingLink.Count() + 1;
                         foundLink.StatusContainingLink.Add(loggedStatus);
-                        _tweetRepository.Save(foundLink);
+                        _processedLinkRepository.Save(foundLink);
                     }
 
                 }
-            }
-            ProcessBatch();
-        }
-
-        public void ProcessBatch()
-        {
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed ==false).ToList();
-            _logger.DebugFormat("Unprocessed {0}", unprocessed.Count);
-            ProcessRawUrlUpdates(unprocessed);
-        }
-
-
-        public void ProcessRawUrlUpdates(IList<LoggedLink> links)
-        {
-
-            foreach (var loggedLink in links)
-            {
-                var expanded = GetExpandedLink(loggedLink.Link);
-
-
-
-                var found = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expanded);
-                if(found==null)
-                {
-                    _logger.DebugFormat("did not find {0}", expanded);
-                    var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
-                    processedLink.ExpandedLink = expanded;
-                    processedLink.Modified = DateTime.Now;
-                    processedLink.Created = DateTime.Now;
-                    processedLink.Processed = true;
-                    _processedLinkRepository.Save(processedLink);
-                } else
-                {
-                    _logger.DebugFormat("FOUND: {0}", expanded);
-                    found.Modified = DateTime.Now;
-                    found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
-                    found.NumberOfTweets = found.StatusContainingLink.Count();
-                    found.Processed = true;
-                    _processedLinkRepository.Save(found);
-                }
-
-                loggedLink.ExpandedLink = expanded;
-                loggedLink.Processed = true;
-                _tweetRepository.Update(loggedLink.Id, loggedLink);
             }
         }
 
