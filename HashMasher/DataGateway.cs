@@ -78,7 +78,7 @@ namespace HashMasher
                                               ExpandedLink = expandedLink,
                                               Created = DateTime.Now,
                                               NumberOfTweets = 1,
-                                              Processed = true
+                                              Processed = false
                                           };
                         newLink.StatusContainingLink.Add(loggedStatus);
                         newLink.HashTag = hashTag;
