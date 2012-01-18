@@ -45,6 +45,7 @@
     <Reference Include="pnunit.framework">
       <HintPath>..\HashMasher\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ProMongoRepository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataGateway_Specs.cs" />
     <Compile Include="HashTagRepository_Specs.cs" />
     <Compile Include="TwitterStreamReader_Specs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

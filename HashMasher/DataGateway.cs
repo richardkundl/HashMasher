@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HashMasher.Model;
 using ProMongoRepository;
+using RestSharp;
 using Twitterizer;
 using Twitterizer.Entities;
 
@@ -10,6 +12,7 @@ namespace HashMasher
     public interface IDataGateway
     {
         void ProcessStatus(TwitterStatus status);
+        string GetExpandedLink(string url);
     }
 
     /// <summary>
@@ -22,26 +25,34 @@ namespace HashMasher
 
         private readonly IMongoRepository<LoggedLink> _tweetRepository;
         private readonly IApplicationConfiguration _configuration;
+        private readonly IMongoRepository<ProcessedLink> _processedLinkRepository;
 
-        public DataGateway(IMongoRepository<LoggedLink> tweetRepository, IApplicationConfiguration configuration)
+        public DataGateway(IMongoRepository<LoggedLink> tweetRepository, IApplicationConfiguration configuration, IMongoRepository<ProcessedLink> processedLinkRepository )
         {
             _tweetRepository = tweetRepository;
             _configuration = configuration;
+            _processedLinkRepository = processedLinkRepository;
         }
 
 
         public void ProcessStatus(TwitterStatus status)
         {
 
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed == false).Take(10).ToList();
+            ProcessRawUrlUpdates(unprocessed);
+
             // Exit the method if there are no entities
             if (status.Entities == null)
                 return;
 
-            var foundHashTags = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant())).ToList();
+            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().Where(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant())).FirstOrDefault();
 
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
             {
+
+                //var loggedStatus = new LoggedStatus();
+
                 var loggedStatus = new LoggedStatus
                 {
                     CreatedDate = status.CreatedDate,
@@ -56,18 +67,21 @@ namespace HashMasher
                 var urlEntity = entity as TwitterUrlEntity;
                 if (urlEntity != null)
                 {
-                    var foundLink = _tweetRepository.Linq().FirstOrDefault(x => x.Link == urlEntity.Url);
+                    var expandedLink = GetExpandedLink(urlEntity.Url);
+                    var foundLink = _tweetRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expandedLink);
                     if (foundLink == null)
                     {
 
                         var newLink = new LoggedLink
                                           {
                                               Link = urlEntity.Url, 
+                                              ExpandedLink = expandedLink,
                                               Created = DateTime.Now,
-                                              NumberOfTweets = 1
+                                              NumberOfTweets = 1,
+                                              Processed = true
                                           };
                         newLink.StatusContainingLink.Add(loggedStatus);
-                        newLink.HashTags.AddRange(foundHashTags);
+                        newLink.HashTag = hashTag;
                         _tweetRepository.Save(newLink);
 
                     }
@@ -85,6 +99,45 @@ namespace HashMasher
 
                 }
             }
+        }
+
+
+        public void ProcessRawUrlUpdates(IList<LoggedLink> links)
+        {
+
+            foreach (var loggedLink in links)
+            {
+                var expanded = GetExpandedLink(loggedLink.Link);
+
+                loggedLink.ExpandedLink = expanded;
+                loggedLink.Processed = true;
+                _tweetRepository.Update(loggedLink.Id, loggedLink);
+
+
+                var found = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expanded);
+                if(found!=null)
+                {
+                    var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
+                    _processedLinkRepository.Save(processedLink);
+                } else
+                {
+                    found.Modified = DateTime.Now;
+                    found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
+                    found.NumberOfTweets = found.StatusContainingLink.Count();
+                    _processedLinkRepository.Save(found);
+                }
+            }
+        }
+
+        public string GetExpandedLink(string url)
+        {
+            var client = new RestClient("http://api.longurl.org/v2/expand");
+            var restRequest = new RestRequest();
+            
+            restRequest.AddParameter("format", "json");
+            restRequest.AddParameter("url", url);
+            var response = client.Execute<ExpandedLink>(restRequest);
+            return response.Data.longUrl;
         }
     }
 }

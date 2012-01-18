@@ -1,22 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Norm;
 
 namespace HashMasher.Model
 {
-    public class LoggedLink
+    public class ProcessedLink
     {
-        public LoggedLink()
+        public ProcessedLink()
         {
             StatusContainingLink = new List<LoggedStatus>();
-            HashTags = new List<string>();
         }
 
         public ObjectId Id { get; set; }
         public string Link { get; set; }
         public string ExpandedLink { get; set; }
         public IList<LoggedStatus> StatusContainingLink { get; set; }
-        public List<string> HashTags { get; set; }
         public DateTime? Created { get; set; }
         public DateTime Modified { get; set; }
         public int NumberOfTweets { get; set; }
