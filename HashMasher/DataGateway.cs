@@ -121,7 +121,7 @@ namespace HashMasher
 
 
                 var found = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expanded);
-                if(found!=null)
+                if(found==null)
                 {
                     var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
                     _processedLinkRepository.Save(processedLink);
