@@ -22,7 +22,7 @@ namespace HashMasher.Web.Controllers
 
             var vm = _repository
                 .Linq()
-                //.OrderByDescending(x => x.NumberOfTweets)
+                .OrderByDescending(x => x.NumberOfTweets)
                 .OrderByDescending(x => x.Created)
                 .ToList();
             return View(vm);
