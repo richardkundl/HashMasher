@@ -20,15 +20,16 @@
     {
         <div>
             <h5><a href="@item.ExpandedLink" target="_blank">@item.ExpandedLink</a></h5>
-            <div>
-                @Microsoft.Web.Helpers.Video.Flash(item.ExpandedLink);
-            </div>
+            @if(item.ExpandedLink.Contains("youtube")){
+                <div>@Video.Flash(item.ExpandedLink)</div>
+                }
             @{
-        var firstLink = item.StatusContainingLink.FirstOrDefault();
-        var display = (firstLink != null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
+            var firstLink = item.StatusContainingLink.FirstOrDefault();
+            var display = (firstLink != null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
             }
+            
             <p>@Html.Raw(display)</p>
-            <div>@(item.Created.HasValue ? String.Format("{0:g}", item.Created.Value) : "unknown")</div>
+            <div><a target="_blank" href="http://twitter.com/@firstLink.User">@@@firstLink.User</a> at @(item.Created.HasValue ? String.Format("{0:g}", item.Created.Value) : "unknown")</div>
         </div>
     }
 
