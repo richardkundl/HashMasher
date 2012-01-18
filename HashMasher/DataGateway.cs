@@ -116,15 +116,15 @@ namespace HashMasher
             {
                 var expanded = GetExpandedLink(loggedLink.Link);
 
-                loggedLink.ExpandedLink = expanded;
-                loggedLink.Processed = true;
-                _tweetRepository.Update(loggedLink.Id, loggedLink);
 
 
                 var found = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expanded);
                 if(found==null)
                 {
                     var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
+                    processedLink.ExpandedLink = expanded;
+                    processedLink.Modified = DateTime.Now;
+                    processedLink.Created = DateTime.Now;
                     processedLink.Processed = true;
                     _processedLinkRepository.Save(processedLink);
                 } else
@@ -132,9 +132,14 @@ namespace HashMasher
                     found.Modified = DateTime.Now;
                     found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
                     found.NumberOfTweets = found.StatusContainingLink.Count();
+                    found.ExpandedLink = expanded;
                     found.Processed = true;
                     _processedLinkRepository.Save(found);
                 }
+
+                loggedLink.ExpandedLink = expanded;
+                loggedLink.Processed = true;
+                _tweetRepository.Update(loggedLink.Id, loggedLink);
             }
         }
 
