@@ -104,7 +104,7 @@ namespace HashMasher
 
         public void ProcessBatch()
         {
-            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed !=true).Take(30).ToList();
+            var unprocessed = _tweetRepository.Linq().Where(x => x.Processed ==false).ToList();
             ProcessRawUrlUpdates(unprocessed);
         }
 
@@ -132,7 +132,6 @@ namespace HashMasher
                     found.Modified = DateTime.Now;
                     found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
                     found.NumberOfTweets = found.StatusContainingLink.Count();
-                    found.ExpandedLink = expanded;
                     found.Processed = true;
                     _processedLinkRepository.Save(found);
                 }
