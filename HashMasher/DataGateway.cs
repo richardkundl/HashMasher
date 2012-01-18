@@ -45,7 +45,8 @@ namespace HashMasher
             if (status.Entities == null)
                 return;
 
-            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant()));
+            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().
+                FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant()));
 
             var entitiesSorted = status.Entities.OrderBy(e => e.StartIndex).Reverse();
             foreach (var entity in entitiesSorted)
@@ -64,31 +65,38 @@ namespace HashMasher
                 var urlEntity = entity as TwitterUrlEntity;
                 if (urlEntity != null)
                 {
-                    var expandedLink = GetExpandedLink(urlEntity.Url);
-                    var foundLink = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expandedLink);
-                    if (foundLink == null)
+                    try
                     {
+                        var expandedLink = GetExpandedLink(urlEntity.Url);
+                        var foundLink = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expandedLink);
+                        if (foundLink == null)
+                        {
 
-                        var newLink = new ProcessedLink
-                                          {
-                                              Link = urlEntity.Url, 
-                                              ExpandedLink = expandedLink,
-                                              Created = DateTime.Now,
-                                              NumberOfTweets = 1,
-                                          };
-                        newLink.StatusContainingLink.Add(loggedStatus);
-                        newLink.HashTag = hashTag;
-                        _processedLinkRepository.Save(newLink);
+                            var newLink = new ProcessedLink
+                            {
+                                Link = urlEntity.Url,
+                                ExpandedLink = expandedLink,
+                                Created = DateTime.Now,
+                                NumberOfTweets = 1,
+                                HashTag = hashTag
+                            };
+                            newLink.StatusContainingLink.Add(loggedStatus);
+                            _processedLinkRepository.Save(newLink);
 
+                        }
+                        else
+                        {
+                            foundLink.Modified = DateTime.Now;
+                            foundLink.NumberOfTweets = foundLink.StatusContainingLink.Count() + 1;
+                            foundLink.StatusContainingLink.Add(loggedStatus);
+                            _processedLinkRepository.Save(foundLink);
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        foundLink.Modified = DateTime.Now;
-                        foundLink.NumberOfTweets = foundLink.StatusContainingLink.Count() + 1;
-                        foundLink.StatusContainingLink.Add(loggedStatus);
-                        _processedLinkRepository.Save(foundLink);
+                            
+                        _logger.Error(e);
                     }
-
                 }
             }
         }
