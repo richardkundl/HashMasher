@@ -22,7 +22,8 @@
             <h5><a href="@item.ExpandedLink" target="_blank">@item.ExpandedLink</a></h5>
             @if(item.ExpandedLink.Contains("youtube")){
                 <div>@Video.Flash(item.ExpandedLink)</div>
-                }
+                <iframe  width="320" height="190" src="@item.ExpandedLink" frameborder="0" allowfullscreen></iframe>
+            }
             @{
             var firstLink = item.StatusContainingLink.FirstOrDefault();
             var display = (firstLink != null && string.IsNullOrEmpty(firstLink.HtmlText)) ? firstLink.Text : firstLink.HtmlText;
