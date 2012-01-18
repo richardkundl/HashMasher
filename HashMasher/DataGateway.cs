@@ -6,6 +6,7 @@ using ProMongoRepository;
 using RestSharp;
 using Twitterizer;
 using Twitterizer.Entities;
+using log4net;
 
 namespace HashMasher
 {
@@ -23,7 +24,7 @@ namespace HashMasher
     /// </summary>
     public class DataGateway : IDataGateway
     {
-
+        protected readonly ILog _logger = LogManager.GetLogger("DataGateway");
         private readonly IMongoRepository<LoggedLink> _tweetRepository;
         private readonly IApplicationConfiguration _configuration;
         private readonly IMongoRepository<ProcessedLink> _processedLinkRepository;
@@ -105,6 +106,7 @@ namespace HashMasher
         public void ProcessBatch()
         {
             var unprocessed = _tweetRepository.Linq().Where(x => x.Processed ==false).ToList();
+            _logger.DebugFormat("Unprocessed {0}", unprocessed.Count);
             ProcessRawUrlUpdates(unprocessed);
         }
 
@@ -121,6 +123,7 @@ namespace HashMasher
                 var found = _processedLinkRepository.Linq().FirstOrDefault(x => x.ExpandedLink == expanded);
                 if(found==null)
                 {
+                    _logger.DebugFormat("did not find {0}", expanded);
                     var processedLink = AutoMapper.Mapper.DynamicMap<LoggedLink, ProcessedLink>(loggedLink);
                     processedLink.ExpandedLink = expanded;
                     processedLink.Modified = DateTime.Now;
@@ -129,6 +132,7 @@ namespace HashMasher
                     _processedLinkRepository.Save(processedLink);
                 } else
                 {
+                    _logger.DebugFormat("FOUND: {0}", expanded);
                     found.Modified = DateTime.Now;
                     found.StatusContainingLink.Add(loggedLink.StatusContainingLink.FirstOrDefault());
                     found.NumberOfTweets = found.StatusContainingLink.Count();

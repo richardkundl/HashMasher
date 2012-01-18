@@ -16,6 +16,10 @@ namespace HashMasher.Web.Controllers
 
         public ActionResult Index()
         {
+            var dataGateway = Container.Windsor.Resolve<IDataGateway>();
+            dataGateway.ProcessBatch();
+
+
             var vm = _repository
                 .Linq()
                 //.OrderByDescending(x => x.NumberOfTweets)
