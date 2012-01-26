@@ -6,6 +6,9 @@ namespace HashMasher.Web
     {
         public static string Truncate(this HtmlHelper helper, string input, int length)
         {
+            if (input == null || string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
             if (input.Length <= length)
             {
                 return input;
