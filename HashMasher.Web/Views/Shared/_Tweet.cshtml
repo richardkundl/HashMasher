@@ -9,11 +9,11 @@
     <div class="span9">
         <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
         <div class="text">@Html.Raw(Model.LastText())</div>
-        <button class="fake-link" id="who">Who Tweeted This?</button>
-        <div class="tweeted-by" style="display: none">
+
+        <div class="tweeted-by">
             @foreach (var t in Model.StatusContainingLink)
             {
-                <span><img height="24" width="24" src="@t.UserImage" /></span>
+                <span><img height="24" width="24" src="@t.UserImage" alt="@t.User" /></span>
             }
         </div>
     </div>

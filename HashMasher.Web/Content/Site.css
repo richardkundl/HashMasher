@@ -56,10 +56,8 @@ body
     border: 0;
 }
 
-ul.tweeted-by span {
-    float: left;
-    display: block;
-    margin: 0 5px 0 0;
+.tweeted-by {
+  margin-top: 10px;
 }
 
 .count-tweets {
@@ -85,3 +83,6 @@ ul.tweeted-by span {
     color:#00438a;
 }
 
+.tracked-link {
+    margin: 5px;
+}
