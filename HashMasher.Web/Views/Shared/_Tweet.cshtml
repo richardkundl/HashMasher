@@ -1,0 +1,19 @@
+﻿@using HashMasher.Web
+@model HashMasher.Model.ProcessedLink
+
+<div class="row">
+    <div class="span2">
+        <div>@Model.NumberOfTweets</div>
+    </div>
+    <div class="span9">
+        <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
+        <div class="text"></div>
+
+        <div class="tweeted-by">
+            @foreach(var t in Model.StatusContainingLink)
+            {
+                <span><img src="@t.UserImage" /></span>
+            }
+        </div>
+    </div>
+</div>

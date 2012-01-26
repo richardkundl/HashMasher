@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Helpers.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\processedlinksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -248,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ProcessedLinks\_CreateOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Tweet.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
