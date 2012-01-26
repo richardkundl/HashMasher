@@ -8,7 +8,9 @@
     <div class="span9">
         <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
         <div class="text">@Html.Raw(Model.LastText())</div>
-        <div><span class="primary">Who Tweeted This?</span></div>
+        <div class="well">
+            <button class="btn primary">Who Tweeted This?</button>
+        </div>
         <div class="tweeted-by" style="display: none">
             @foreach (var t in Model.StatusContainingLink)
             {
