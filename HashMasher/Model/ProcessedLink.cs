@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Norm;
 
 namespace HashMasher.Model
@@ -20,5 +21,17 @@ namespace HashMasher.Model
         public int NumberOfTweets { get; set; }
         public bool Processed { get; set; }
         public string HashTag { get; set; }
+
+
+        public string LastText()
+        {
+            var tweet = StatusContainingLink.LastOrDefault();
+            if(tweet!=null)
+            {
+                return tweet.HtmlText;
+            }
+            return "WAT?";
+        }
+
     }
 }

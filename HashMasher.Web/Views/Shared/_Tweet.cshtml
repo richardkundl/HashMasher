@@ -7,12 +7,12 @@
     </div>
     <div class="span9">
         <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
-        <div class="text"></div>
-
-        <div class="tweeted-by">
-            @foreach(var t in Model.StatusContainingLink)
+        <div class="text">@Model.LastText()</div>
+        <div><span class="primary">Who Tweeted This?</span></div>
+        <div class="tweeted-by" style="display: none">
+            @foreach (var t in Model.StatusContainingLink)
             {
-                <span><img src="@t.UserImage" /></span>
+                <span><img height="24" width="24" src="@t.UserImage" /></span>
             }
         </div>
     </div>
