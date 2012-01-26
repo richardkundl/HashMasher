@@ -20,7 +20,7 @@ namespace HashMasher.Web
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                new { controller = @"(Home|Users|ProcessedLinks)" } // Constraints
+                new { controller = @"(Users|ProcessedLinks)" } // Constraints
             );
 
             routes.MapRoute(
