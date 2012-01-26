@@ -1,0 +1,60 @@
+@model HashMasher.Model.ProcessedLink
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Link)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Link)
+    @Html.ValidationMessageFor(model => model.Link)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ExpandedLink)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ExpandedLink)
+    @Html.ValidationMessageFor(model => model.ExpandedLink)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Created)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Created)
+    @Html.ValidationMessageFor(model => model.Created)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Modified)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Modified)
+    @Html.ValidationMessageFor(model => model.Modified)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.NumberOfTweets)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.NumberOfTweets)
+    @Html.ValidationMessageFor(model => model.NumberOfTweets)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Processed)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Processed)
+    @Html.ValidationMessageFor(model => model.Processed)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.HashTag)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.HashTag)
+    @Html.ValidationMessageFor(model => model.HashTag)
+</div>
+

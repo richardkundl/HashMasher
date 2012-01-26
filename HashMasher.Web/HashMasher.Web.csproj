@@ -38,6 +38,9 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\HashMasher\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="log4mongo-net">
       <HintPath>..\packages\log4mongo-net.0.5.0.0\lib\net40\log4mongo-net.dll</HintPath>
     </Reference>
@@ -63,6 +66,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HashMasher\packages\Twitterizer\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Norm, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ProMongoRepository">
       <HintPath>..\HashMasher\packages\ProMongoRepository.0.2\lib\net40\ProMongoRepository.dll</HintPath>
     </Reference>
@@ -123,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\processedlinksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
@@ -130,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Installers\ControllerInstaller.cs" />
+    <Compile Include="Models\HashMasherWebContext.cs" />
     <Compile Include="Models\TwitterResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +230,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Users\Fail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProcessedLinks\_CreateOrEdit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

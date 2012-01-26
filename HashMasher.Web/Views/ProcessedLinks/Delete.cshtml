@@ -1,0 +1,44 @@
+@model HashMasher.Model.ProcessedLink
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ProcessedLink</legend>
+
+    <div class="display-label">Link</div>
+    <div class="display-field">@Model.Link</div>
+
+    <div class="display-label">ExpandedLink</div>
+    <div class="display-field">@Model.ExpandedLink</div>
+
+    <div class="display-label">StatusContainingLink</div>
+    <div class="display-field">@(Model.StatusContainingLink == null ? "None" : Model.StatusContainingLink.Count.ToString())</div>
+
+    <div class="display-label">Created</div>
+    <div class="display-field">@String.Format("{0:g}", Model.Created)</div>
+
+    <div class="display-label">Modified</div>
+    <div class="display-field">@String.Format("{0:g}", Model.Modified)</div>
+
+    <div class="display-label">NumberOfTweets</div>
+    <div class="display-field">@Model.NumberOfTweets</div>
+
+    <div class="display-label">Processed</div>
+    <div class="display-field">@Model.Processed</div>
+
+    <div class="display-label">HashTag</div>
+    <div class="display-field">@Model.HashTag</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

@@ -1,0 +1,77 @@
+@model IEnumerable<HashMasher.Model.ProcessedLink>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Link
+        </th>
+        <th>
+            ExpandedLink
+        </th>
+        <th>
+            StatusContainingLink
+        </th>
+        <th>
+            Created
+        </th>
+        <th>
+            Modified
+        </th>
+        <th>
+            NumberOfTweets
+        </th>
+        <th>
+            Processed
+        </th>
+        <th>
+            HashTag
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        <td>
+			@item.Link
+        </td>
+        <td>
+			@item.ExpandedLink
+        </td>
+        <td>
+			@(item.StatusContainingLink == null ? "None" : item.StatusContainingLink.Count.ToString())
+        </td>
+        <td>
+			@String.Format("{0:g}", item.Created)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.Modified)
+        </td>
+        <td>
+			@item.NumberOfTweets
+        </td>
+        <td>
+			@item.Processed
+        </td>
+        <td>
+			@item.HashTag
+        </td>
+    </tr>
+}
+
+</table>
+
+
