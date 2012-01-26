@@ -24,7 +24,7 @@ namespace HashMasher.Web.Controllers
 
             ViewBag.Tag = "ALL";
             ViewBag.Tracked = _configuration.HashTags.Split(',').ToArray();
-            List<ProcessedLink> vm = new List<ProcessedLink>();
+            var vm = new List<ProcessedLink>();
             if(string.IsNullOrEmpty(id))
             {
                 vm = _repository
@@ -39,7 +39,7 @@ namespace HashMasher.Web.Controllers
                 var searchKey = id.Replace("#", "").Trim();
                 vm = _repository
                     .Linq()
-                    .Where(x => x.HashTag == searchKey)
+                    .Where(x => x.HashTag.Contains(searchKey))
                     .OrderByDescending(x => x.NumberOfTweets)
                     .OrderByDescending(x => x.Created)
                     .ToList();

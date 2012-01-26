@@ -10,10 +10,16 @@
 <div class="row">
     <div class="span3">
         <h1>TRACKED</h1>
+        <div class="tracked-link">
+                @Html.ActionLink("#all", "Index", "Home", null, new { @class = "btn primary" })
+            </div> 
         @foreach (var item in ViewBag.Tracked)
         {
             <div class="tracked-link">
-                @Html.ActionLink((string)item, "Index", "Home",new { id = item }, new { @class = "btn primary" })
+                @{
+                    var clean = item.Replace("#", "").Trim();
+                }
+                @Html.ActionLink((string)item, "Index", "Home", new { id = clean }, new { @class = "btn primary" })
             </div> 
         }
     </div>
