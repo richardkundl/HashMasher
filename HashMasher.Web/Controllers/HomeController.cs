@@ -42,6 +42,7 @@ namespace HashMasher.Web.Controllers
                     .Where(x => x.HashTag.Contains(searchKey))
                     .OrderByDescending(x => x.NumberOfTweets)
                     .OrderByDescending(x => x.Created)
+                    .Take(20)
                     .ToList();
             }
             _logger.Info("items:" + vm.Count());
