@@ -61,3 +61,27 @@ ul.tweeted-by span {
     display: block;
     margin: 0 5px 0 0;
 }
+
+.count-tweets {
+    color: #999;
+    text-align: center;
+}
+.count {
+    height: 25px;
+    font-size: 3em;
+    font-weight: bold;
+     text-align: center;
+}
+
+.fake-link {
+    color: #0069D6;
+    text-decoration: none;
+    line-height: inherit;
+    font-weight: inherit;
+}
+
+.fake-link:hover {
+    text-decoration: underline;
+    color:#00438a;
+}
+

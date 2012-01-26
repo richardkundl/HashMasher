@@ -1,16 +1,15 @@
 ﻿@using HashMasher.Web
 @model HashMasher.Model.ProcessedLink
 
-<div class="row">
-    <div class="span2">
-        <div>@Model.NumberOfTweets</div>
+<div class="row well">
+    <div class="span1">
+        <div class="count">@Model.NumberOfTweets</div>
+        <div class="count-tweets">tweets</div>
     </div>
     <div class="span9">
         <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
         <div class="text">@Html.Raw(Model.LastText())</div>
-        <div class="well">
-            <button class="btn primary">Who Tweeted This?</button>
-        </div>
+        <button class="fake-link" id="who">Who Tweeted This?</button>
         <div class="tweeted-by" style="display: none">
             @foreach (var t in Model.StatusContainingLink)
             {
