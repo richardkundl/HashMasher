@@ -1,9 +1,6 @@
-﻿using System;
-using FluentAssertions;
-using HashMasher.Model;
+﻿using FluentAssertions;
 using HashMasherRunner;
 using NUnit.Framework;
-using ProMongoRepository;
 
 namespace HashMasher.Tests
 {
