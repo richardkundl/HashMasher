@@ -13,13 +13,13 @@
         <div class="tracked-link">
                 @Html.ActionLink("#all", "Index", new { id = ""}, new { @class = "btn primary" })
             </div> 
-        @foreach (var item in ViewBag.Tracked)
+        @foreach (HashMasher.Model.HashTag item in ViewBag.Tracked)
         {
             <div class="tracked-link">
                 @{
-                    var clean = item.Replace("#", "").Trim();
+                    var clean = item.Name.Replace("#", "").Trim();
                 }
-                @Html.ActionLink((string)item, "Index", "Home", new { id = clean }, new { @class = "btn primary" })
+                @Html.ActionLink(item.Name, "Index", "Home", new { id = clean }, new { @class = "btn primary" })
             </div> 
         }
     </div>
