@@ -11,19 +11,19 @@ namespace HashMasher.Web.Controllers
     {
         protected readonly ILog _logger = LogManager.GetLogger("HomeController");
         private readonly IMongoRepository<ProcessedLink> _repository;
-        private readonly IApplicationConfiguration _configuration;
+        private readonly IMongoRepository<HashTag> _hashTagRepository;
 
-        public HomeController(IMongoRepository<ProcessedLink> repository, IApplicationConfiguration configuration)
+        public HomeController(IMongoRepository<ProcessedLink> repository, IMongoRepository<HashTag> hashTagRepository)
         {
             _repository = repository;
-            _configuration = configuration;
+            _hashTagRepository = hashTagRepository;
         }
 
         public ActionResult Index(string id)
         {
 
             ViewBag.Tag = "ALL";
-            ViewBag.Tracked = _configuration.HashTags.Split(',').ToArray();
+            ViewBag.Tracked = _hashTagRepository.Linq().ToArray();
             var vm = new List<ProcessedLink>();
             if(string.IsNullOrEmpty(id))
             {

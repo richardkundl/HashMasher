@@ -81,7 +81,6 @@
     <Compile Include="DataGateway.cs" />
     <Compile Include="Model\ExpandedLink.cs" />
     <Compile Include="Model\HashTag.cs" />
-    <Compile Include="Model\IApplicationConfiguration.cs" />
     <Compile Include="Model\LoggedStatus.cs" />
     <Compile Include="Model\LoggedLink.cs" />
     <Compile Include="Model\ProcessedLink.cs" />

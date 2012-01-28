@@ -24,14 +24,12 @@ namespace HashMasher
     public class DataGateway : IDataGateway
     {
         protected readonly ILog _logger = LogManager.GetLogger("DataGateway");
-        private readonly IMongoRepository<LoggedLink> _tweetRepository;
-        private readonly IApplicationConfiguration _configuration;
+        private readonly IMongoRepository<HashTag> _hashTagRepository;
         private readonly IMongoRepository<ProcessedLink> _processedLinkRepository;
 
-        public DataGateway(IMongoRepository<LoggedLink> tweetRepository, IApplicationConfiguration configuration, IMongoRepository<ProcessedLink> processedLinkRepository )
+        public DataGateway(IMongoRepository<HashTag> hashTagRepository, IMongoRepository<ProcessedLink> processedLinkRepository )
         {
-            _tweetRepository = tweetRepository;
-            _configuration = configuration;
+            _hashTagRepository = hashTagRepository;
             _processedLinkRepository = processedLinkRepository;
         }
 
@@ -45,8 +43,10 @@ namespace HashMasher
             if (status.Entities == null)
                 return;
 
-            var hashTag = _configuration.HashTags.Split(',').AsEnumerable().
-                FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.ToLowerInvariant()));
+            var hashTag = _hashTagRepository.Linq()
+                              .FirstOrDefault(x => status.Text.ToLowerInvariant().Contains(x.Name.ToLowerInvariant())) ??
+                          new HashTag {Name = "unknown"};
+
 
             _logger.InfoFormat("HASH: {0}", hashTag);
 
@@ -80,7 +80,7 @@ namespace HashMasher
                                 ExpandedLink = expandedLink,
                                 Created = DateTime.Now,
                                 NumberOfTweets = 1,
-                                HashTag = hashTag
+                                HashTag = hashTag.Name
                             };
                             newLink.StatusContainingLink.Add(loggedStatus);
                             _processedLinkRepository.Save(newLink);

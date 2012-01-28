@@ -1,8 +1,5 @@
-﻿using System.Configuration;
-using Castle.Components.DictionaryAdapter;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using HashMasher.Model;
 using ProMongoRepository;
 
 namespace HashMasher
@@ -17,8 +14,7 @@ namespace HashMasher
             Windsor
                    .Register(Component.For(typeof(IMongoRepository<>)).ImplementedBy(typeof(MongoRepository<>)))
                    .Register(Component.For(typeof(IDataGateway)).ImplementedBy(typeof(DataGateway)))
-                    .Register(Component.For<IApplicationConfiguration>().UsingFactoryMethod(
-                    () => new DictionaryAdapterFactory().GetAdapter<IApplicationConfiguration>(ConfigurationManager.AppSettings)))
+                    //.Register(Component.For<IApplicationConfiguration>().UsingFactoryMethod(() => new DictionaryAdapterFactory().GetAdapter<IApplicationConfiguration>(ConfigurationManager.AppSettings)))
                    ;
         }
     }

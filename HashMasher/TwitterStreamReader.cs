@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HashMasher.Model;
 using ProMongoRepository;
 using Twitterizer;
@@ -15,10 +16,14 @@ namespace HashMasher
         public void StartService()
         {
             var streamOptions = new UserStreamOptions();
-            var config = Container.Windsor.Resolve<IApplicationConfiguration>();
+            var hashTagRepository = Container.Windsor.Resolve<IMongoRepository<HashTag>>();
 
-            
-            streamOptions.Track.AddRange(config.HashTags.Split(',').ToList());
+            var tags = hashTagRepository.Linq().AsEnumerable();
+            if(tags==null) {
+                throw new ArgumentNullException("NO TAGS!");
+            }
+
+            streamOptions.Track.AddRange(tags.Select(x=>x.Name));
 
             var stream = new TwitterStream(Constants.OAuthTokens, "hashMasher", streamOptions);
 
@@ -30,7 +35,7 @@ namespace HashMasher
 
             //stream.EndStream();
             _logger.Debug("service up");
-            TwitterStatus.Update(Constants.OAuthTokens, "@detroitpro hashmash is UP");
+            //TwitterStatus.Update(Constants.OAuthTokens, "@detroitpro hashmash is UP");
         }
 
         public void StopService()
@@ -63,7 +68,7 @@ namespace HashMasher
         private void StreamErrorCallback(StopReasons stopreason)
         {
             _logger.Debug("service down");
-            TwitterDirectMessage.Send(Constants.OAuthTokens, "detroitpro", "hashmash is down");
+            //TwitterDirectMessage.Send(Constants.OAuthTokens, "detroitpro", "hashmash is down");
         }
     }
 }
