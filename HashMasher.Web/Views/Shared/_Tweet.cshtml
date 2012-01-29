@@ -7,8 +7,12 @@
         <div class="count-tweets">tweets</div>
     </div>
     <div class="span9">
-        <p><a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
-        <div class="text">@Html.Raw(Model.LastText())</div>
+        <p>@Html.Raw(Model.Flair) <a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
+        <div class="row">
+            <div class="span1">@Html.Raw(@Model.LastUserImage())</div>
+            <div class="span7">@Html.Raw(Model.LastText())</div>
+        </div>
+        
 
         <div class="tweeted-by">
             @foreach (var t in Model.StatusContainingLink)

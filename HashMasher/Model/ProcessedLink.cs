@@ -22,16 +22,35 @@ namespace HashMasher.Model
         public bool Processed { get; set; }
         public string HashTag { get; set; }
 
+        public string Flair
+        {
+            get
+            {
+                //this is gross but whateva.
+                //If the tweet was crated today.
+                if(Created.HasValue && (Created.Value - DateTime.Now).Days < 1)
+                {
+                    return "<span class='label success'>New</span>";
+                }
+                return string.Empty;
+            }
+        }
+
 
         public string LastText()
         {
             var tweet = StatusContainingLink.LastOrDefault();
-            if(tweet!=null)
-            {
-                return tweet.HtmlText;
-            }
-            return "WAT?";
+            return tweet!=null ? tweet.HtmlText : "WAT?";
         }
 
+        public string LastUserImage()
+        {
+            var tweet = StatusContainingLink.LastOrDefault();
+            if (tweet != null)
+            {
+                return String.Format("<img height='24' width='24' src='{0}' alt='{1}' />", tweet.UserImage, tweet.User);
+            }
+            return "";
+        }
     }
 }
