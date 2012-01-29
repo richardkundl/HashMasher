@@ -43,6 +43,16 @@ namespace HashMasher.Model
             return tweet!=null ? tweet.HtmlText : "WAT?";
         }
 
+        public string LastDetails()
+        {
+            var tweet = StatusContainingLink.LastOrDefault();
+            if (tweet != null)
+            {
+                return String.Format("<a href='http://twitter.com/{0}' target='_blank'>@{0}</a> {1}", tweet.User, String.Format("{0:g}", tweet.CreatedDate));
+            }
+            return "";
+        }
+
         public string LastUserImage()
         {
             var tweet = StatusContainingLink.LastOrDefault();

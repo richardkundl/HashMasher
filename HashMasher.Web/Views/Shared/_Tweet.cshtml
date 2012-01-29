@@ -9,6 +9,7 @@
     <div class="span9">
         <p>@Html.Raw(Model.Flair) <a href="@Model.ExpandedLink" target="_blank">@Html.Truncate(Model.ExpandedLink, 60)</a></p>
         <div class="row">
+           <div class="span12" style="padding-bottom:6px;">@Html.Raw(Model.LastDetails())</div>
             <div class="span1">@Html.Raw(@Model.LastUserImage())</div>
             <div class="span7">@Html.Raw(Model.LastText())</div>
         </div>
