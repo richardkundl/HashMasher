@@ -86,3 +86,7 @@ body
 .tracked-link {
     margin: 5px;
 }
+
+.last-text {
+    margin-left: 0px!important;
+}

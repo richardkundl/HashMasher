@@ -58,9 +58,21 @@ namespace HashMasher.Model
             var tweet = StatusContainingLink.LastOrDefault();
             if (tweet != null)
             {
-                return String.Format("<img height='24' width='24' src='{0}' alt='{1}' />", tweet.UserImage, tweet.User);
+                return String.Format("<img height='36' width='36' src='{0}' alt='{1}' />", tweet.UserImage, tweet.User);
             }
             return "";
         }
+
+        public string FirstDetails()
+        {
+            var tweet = StatusContainingLink.FirstOrDefault();
+            if (tweet != null)
+            {
+                return String.Format("{0} by <a href='http://twitter.com/{1}' target='_blank'>@{1}</a>", String.Format("{0:g}", tweet.CreatedDate), tweet.User);
+            }
+            return "";
+        }
+
+     
     }
 }

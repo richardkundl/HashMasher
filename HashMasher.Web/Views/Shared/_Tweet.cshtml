@@ -11,7 +11,7 @@
         <div class="row">
            <div class="span12" style="padding-bottom:6px;">@Html.Raw(Model.LastDetails())</div>
             <div class="span1">@Html.Raw(@Model.LastUserImage())</div>
-            <div class="span7">@Html.Raw(Model.LastText())</div>
+            <div class="span7 last-text">@Html.Raw(Model.LastText())</div>
         </div>
         
 
@@ -21,5 +21,6 @@
                 <span><img height="24" width="24" src="@t.UserImage" alt="@t.User" /></span>
             }
         </div>
+        <div>First Logged: @Html.Raw(@Model.FirstDetails())</div>
     </div>
 </div>
