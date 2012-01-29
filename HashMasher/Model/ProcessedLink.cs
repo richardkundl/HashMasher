@@ -16,7 +16,7 @@ namespace HashMasher.Model
         public string Link { get; set; }
         public string ExpandedLink { get; set; }
         public IList<LoggedStatus> StatusContainingLink { get; set; }
-        public DateTime? Created { get; set; }
+        public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
         public int NumberOfTweets { get; set; }
         public bool Processed { get; set; }
@@ -28,7 +28,7 @@ namespace HashMasher.Model
             {
                 //this is gross but whateva.
                 //If the tweet was crated today.
-                if (Created.HasValue && (DateTime.Now - Created.Value).Days < 2)
+                if ((DateTime.Now - Created).Days < 2)
                 {
                     return "<span class='label success'>New</span>";
                 }
@@ -39,7 +39,7 @@ namespace HashMasher.Model
 
         public string LastText()
         {
-            var tweet = StatusContainingLink.LastOrDefault();
+            var tweet = StatusContainingLink.OrderBy(x=>x.CreatedDate).LastOrDefault();
             return tweet!=null ? tweet.HtmlText : "WAT?";
         }
 
@@ -55,7 +55,7 @@ namespace HashMasher.Model
 
         public string LastUserImage()
         {
-            var tweet = StatusContainingLink.LastOrDefault();
+            var tweet = StatusContainingLink.OrderBy(x=>x.CreatedDate).LastOrDefault();
             if (tweet != null)
             {
                 return String.Format("<img height='36' width='36' src='{0}' alt='{1}' />", tweet.UserImage, tweet.User);
@@ -65,7 +65,7 @@ namespace HashMasher.Model
 
         public string FirstDetails()
         {
-            var tweet = StatusContainingLink.FirstOrDefault();
+            var tweet = StatusContainingLink.OrderBy(x=>x.CreatedDate).FirstOrDefault();
             if (tweet != null)
             {
                 return String.Format("{0} by <a href='http://twitter.com/{1}' target='_blank'>@{1}</a>", String.Format("{0:g}", tweet.CreatedDate), tweet.User);
