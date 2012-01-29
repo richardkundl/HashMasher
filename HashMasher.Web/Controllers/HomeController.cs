@@ -30,6 +30,7 @@ namespace HashMasher.Web.Controllers
             {
                 vm = _repository
                     .Linq()
+                    .Where(x=>x.Created > DateTime.Today.AddDays(-5))
                     .OrderByDescending(x => x.NumberOfTweets)
                     .OrderByDescending(x => x.Created)
                     .Take(20)
