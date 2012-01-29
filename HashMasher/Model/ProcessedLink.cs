@@ -28,7 +28,7 @@ namespace HashMasher.Model
             {
                 //this is gross but whateva.
                 //If the tweet was crated today.
-                if(Created.HasValue && (Created.Value - DateTime.Now).Days < 1)
+                if (Created.HasValue && (DateTime.Now - Created.Value).Days < 2)
                 {
                     return "<span class='label success'>New</span>";
                 }
